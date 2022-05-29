@@ -7,7 +7,7 @@ Calculator::Calculator(){
 
 void Calculator::evaluate(std::vector<std::string> input){
     if(input.size()==1){
-        expression="error";
+        expression="Error";
         return;
     }
     for (int i = 0; i < input.size(); i++){
@@ -20,7 +20,7 @@ void Calculator::evaluate(std::vector<std::string> input){
                 mainStack.pop();
                 expressionStack.pop();
                 if(isANumber(mainStack.top())){
-                    expression = "error";
+                    expression = "Error";
                     return;
                 }
                 char c = mainStack.top().front();
@@ -47,12 +47,12 @@ void Calculator::evaluate(std::vector<std::string> input){
         mainStack.pop();
         std::string checkSecond = mainStack.top();
         if(isANumber(checkTop)==false||isANumber(checkSecond)==false){
-            expression = "error";
+            expression = "Error";
             return;
         }
         mainStack.push(checkTop);
         if(mainStack.size()<3){
-            expression = "error";
+            expression = "Error";
             return;
         }
 
@@ -65,7 +65,7 @@ void Calculator::evaluate(std::vector<std::string> input){
         mainStack.pop();
         expressionStack.pop();
         if(isANumber(mainStack.top())){
-            expression = "error";
+            expression = "Error";
             return;
         }
         char c = mainStack.top().front();
@@ -107,7 +107,7 @@ std::string Calculator::calculate(int num1, int num2, char op){
     }else if(op=='/'){
         result =  std::to_string(num1/num2);
     }else{
-        return "error";
+        return "Error";
     }
     return result;
 }
