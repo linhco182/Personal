@@ -9,7 +9,7 @@ private:
 std::string expression;
 std::stack<std::string> mainStack;
 std::stack<std::string> expressionStack;
-bool topIsNumber;
+bool added;
 public:
 void evaluate(std::vector<std::string> input);
 std::string calculate(int num1, int num2, char op);

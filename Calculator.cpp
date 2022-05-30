@@ -2,7 +2,6 @@
 #include <ctype.h>
 
 Calculator::Calculator(){
-    topIsNumber=false;
 }
 
 void Calculator::evaluate(std::vector<std::string> input){
@@ -78,9 +77,11 @@ void Calculator::evaluate(std::vector<std::string> input){
         expressionStack.push(write(aS,bS,cS));
     }
     expression = expressionStack.top();
-    expression.erase(0,1);
-    expression.pop_back();
-    expression.append("=");
+    if(added){
+        expression.erase(0,1);
+        expression.pop_back();
+    }
+    expression.append(" = ");
     expression.append(mainStack.top());
     return;
 }
@@ -114,11 +115,21 @@ std::string Calculator::calculate(int num1, int num2, char op){
 
 std::string Calculator::write(std::string a, std::string b, std::string op){
     std::string result;
-    result.append("(");
+    if(op=="+"||op=="-"){
+        result.append("(");
+        added=true;
+    }else{
+        added=false;
+    }
     result.append(a);
+    result.append(" ");
     result.append(op);
+    result.append(" ");
     result.append(b);
-    result.append(")");
+    if(op=="+"||op=="-"){
+        result.append(")");
+    }
+    
 
     return result;
 
